@@ -19,6 +19,12 @@
 #include <ctime>
 #include <map>
 
+const uint32_t TILE_SIZE = 32;
+
+inline int posToTilePos(int p) {
+	return p / TILE_SIZE;
+}
+
 
 typedef ImVec2 vec2;
 typedef ImVec4 vec4;
