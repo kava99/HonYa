@@ -2,13 +2,19 @@
 #include "Common.hpp"
 #include "GraphicsEngine.h"
 
-std::unique_ptr<GraphicsEngine> gGraphicsEngine;
 
+#include "Object.h"
+#include "Shelf.h"
+
+std::unique_ptr<GraphicsEngine> gGraphicsEngine;
+std::unique_ptr<Object> gObject;
 
 void onInitialization() {
 	gGraphicsEngine = std::make_unique<GraphicsEngine>();
 	gGraphicsEngine->createWindow({800, 600});
 
+
+	gObject = std::make_unique<Shelf>();
 }
 
 void update(float ticks) {
@@ -19,6 +25,11 @@ void update(float ticks) {
 void render() {
 	if (gGraphicsEngine->beginFrame()) {
 
+		ImGui::Begin("Object");
+
+		gObject->renderGuiDebug();
+
+		ImGui::End();
 
 		gGraphicsEngine->endFrame();
 	}

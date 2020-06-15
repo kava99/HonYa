@@ -3,6 +3,7 @@
 
 class Shelf : public Object
 {
+public:
 	Shelf();
 	~Shelf();
 

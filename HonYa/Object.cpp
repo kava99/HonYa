@@ -11,6 +11,31 @@ Object::~Object()
 
 void Object::renderGuiDebug()
 {
+	ImGui::Text("Object Type: %s", objectTypeString[mObjectType].c_str());
+	ImGui::Text("InGame Name: %s", mInGameName.c_str());
+	ImGui::Text("Size in tiles: %ix%i", (int)mSizeInTiles.x, (int)mSizeInTiles.y);
+	ImGui::Text("Unique id: %i", mUniqueId);
+	ImGui::Text("Position: %i, %i, %i, %i", (int)mPosition.x, (int)mPosition.y, (int)mPosition.z, (int)mPosition.w);
+	ImGui::Text("Space taken: %i", mSpaceTaken);
+	if (mCapacity != -1) {
+		if (ImGui::TreeNode(format("Capacity: %i", mCapacity).c_str())) {
+
+			/*auto items = obj->mItems;
+
+			for (int i = 0; i < items.size(); ++i) {
+				if (items[i] == nullptr)
+					ImGui::Text("%i: nullptr", i);
+				else
+					ImGui::Text("%i: %s", i, items[i]->mInGameName.c_str());
+			}*/
+
+
+			ImGui::TreePop();
+		}
+	}
+	else
+		ImGui::Text("Capacity: %i", mCapacity);
+
 }
 
 void Object::setDefaultValues()
