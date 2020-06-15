@@ -1,8 +1,13 @@
 
 #include "Common.hpp"
+#include "GraphicsEngine.h"
+
+std::unique_ptr<GraphicsEngine> gGraphicsEngine;
 
 
 void onInitialization() {
+	gGraphicsEngine = std::make_unique<GraphicsEngine>();
+	gGraphicsEngine->createWindow({800, 600});
 
 }
 
@@ -12,7 +17,11 @@ void update(float ticks) {
 }
 
 void render() {
+	if (gGraphicsEngine->beginFrame()) {
 
+
+		gGraphicsEngine->endFrame();
+	}
 }
 
 int main(int argc, char **argv){
@@ -20,7 +29,7 @@ int main(int argc, char **argv){
 	onInitialization();
 
 
-	int fps = 120;
+	int fps = 480;
 	float secsPerFrame = 1.0f / fps;
 
 
@@ -29,6 +38,7 @@ int main(int argc, char **argv){
 		
 		auto start = std::chrono::high_resolution_clock::now();
 		update(diff.count());
+		render();
 		auto end = std::chrono::high_resolution_clock::now();
 		diff = end-start;
 		while(static_cast<float>(diff.count()) <= secsPerFrame){

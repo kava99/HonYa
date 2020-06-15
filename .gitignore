@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/HonYa/Object.cpp
+/HonYa/Object.h
+/HonYa/Shelf.cpp
+/HonYa/Shelf.h

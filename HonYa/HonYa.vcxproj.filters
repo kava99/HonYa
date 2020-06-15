@@ -1,20 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="External">
       <UniqueIdentifier>{2575f8b9-6f46-4e89-8e07-49c60db80455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4de1a1e2-484f-4e23-930f-aea3197738bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Objects">
+      <UniqueIdentifier>{56d72cf7-0639-4517-9bee-cbd47df9d6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Interfaces">
+      <UniqueIdentifier>{4cba57b7-75a0-4e7c-8cc1-b16b5d520308}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,8 +35,15 @@
       <Filter>External</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Shelf.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -63,7 +71,17 @@
       <Filter>External</Filter>
     </ClInclude>
     <ClInclude Include="Common.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Shelf.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="IGuiDebug.h">
+      <Filter>src\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsEngine.h" />
   </ItemGroup>
 </Project>
