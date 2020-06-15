@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Delivery.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectContainer.cpp" />
     <ClCompile Include="Shelf.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="DebugGui.h" />
+    <ClInclude Include="Delivery.h" />
     <ClInclude Include="external\imgui\imconfig.h" />
     <ClInclude Include="external\imgui\imgui.h" />
     <ClInclude Include="external\imgui\imgui_impl_allegro5.h" />
@@ -177,6 +180,7 @@
     <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="IGuiDebug.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectContainer.h" />
     <ClInclude Include="Shelf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

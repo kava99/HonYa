@@ -46,6 +46,12 @@
     <ClCompile Include="GraphicsEngine.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectContainer.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Delivery.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -89,6 +95,12 @@
     </ClInclude>
     <ClInclude Include="GraphicsEngine.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectContainer.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Delivery.h">
+      <Filter>src\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
