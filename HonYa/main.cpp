@@ -1,7 +1,7 @@
 
 #include "Common.hpp"
 #include "GraphicsEngine.h"
-
+#include "DebugGui.h"
 
 #include "Object.h"
 #include "Shelf.h"
@@ -18,12 +18,14 @@ void onInitialization() {
 }
 
 void update(float ticks) {
-	std::cout << "Ticks: " << ticks << "\n";
 
 }
 
 void render() {
 	if (gGraphicsEngine->beginFrame()) {
+
+		debug_gui::renderBasic();
+
 
 		ImGui::Begin("Object");
 
