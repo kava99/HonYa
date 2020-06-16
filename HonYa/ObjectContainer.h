@@ -19,6 +19,7 @@ public:
 
 	uint32_t createShelf();
 	uint32_t createDelivery();
+	uint32_t createObject(ObjectType ot);
 
 	bool removeObject(uint32_t id);
 

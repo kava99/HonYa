@@ -52,6 +52,7 @@
     <ClCompile Include="Delivery.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Magazine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -102,5 +103,6 @@
     <ClInclude Include="Delivery.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Magazine.h" />
   </ItemGroup>
 </Project>

@@ -2,22 +2,23 @@
 #include "Common.hpp"
 #include "GraphicsEngine.h"
 #include "DebugGui.h"
+#include "Magazine.h"
 
 
 #include "ObjectContainer.h"
 
 std::unique_ptr<GraphicsEngine> gGraphicsEngine;
-std::unique_ptr<ObjectContainer> gObjectCon;
+std::unique_ptr<Magazine> gMagazine;
 
 void onInitialization() {
 	gGraphicsEngine = std::make_unique<GraphicsEngine>();
 	gGraphicsEngine->createWindow({800, 600});
 
 
-	gObjectCon = std::make_unique<ObjectContainer>();
-	gObjectCon->createShelf();
-	gObjectCon->createShelf();
-	gObjectCon->createDelivery();
+	gMagazine = std::make_unique<Magazine>();
+	gMagazine->buildObject(ObjectType::SHELF, vec2(3, 3));
+	gMagazine->buildObject(ObjectType::SHELF, vec2(3, 5));
+	gMagazine->buildObject(ObjectType::DELIVERY, vec2(9, 9));
 }
 
 void update(float ticks) {
@@ -27,12 +28,15 @@ void update(float ticks) {
 void render() {
 	if (gGraphicsEngine->beginFrame()) {
 
-		debug_gui::renderBasic();
+		gMagazine->drawMap();
 
+
+
+		debug_gui::renderBasic();
 
 		ImGui::Begin("Object Container");
 
-		gObjectCon->renderGuiDebug();
+		gMagazine->renderGuiDebug();
 
 		ImGui::End();
 

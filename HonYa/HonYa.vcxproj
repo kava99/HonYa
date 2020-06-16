@@ -158,6 +158,7 @@
     <ClCompile Include="external\imgui\imgui_impl_allegro5.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
+    <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectContainer.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="external\imgui\imstb_truetype.h" />
     <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="IGuiDebug.h" />
+    <ClInclude Include="Magazine.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectContainer.h" />
     <ClInclude Include="Shelf.h" />

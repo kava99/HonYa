@@ -50,7 +50,7 @@ uint32_t ObjectContainer::createShelf()
 	mShelves.push_back(sh);
 
 	uint32_t id = mAllObjects.size();
-
+	sh->mUniqueId = id;
 	mAllObjects.push_back(std::make_pair(sh->mObjectType, shId));
 
 	return id;
@@ -65,16 +65,29 @@ uint32_t ObjectContainer::createDelivery()
 	mDeliveries.push_back(d);
 
 	uint32_t id = mAllObjects.size();
-
+	d->mUniqueId = id;
 	mAllObjects.push_back(std::make_pair(d->mObjectType, dId));
 
 	return id;
 }
 
+uint32_t ObjectContainer::createObject(ObjectType ot)
+{
+	switch (ot) {
+	case ObjectType::SHELF:
+		return createShelf();
+		break;
+	case ObjectType::DELIVERY:
+		return createDelivery();
+		break;
+	}
+	return 0;
+}
+
 bool ObjectContainer::removeObject(uint32_t id)
 {
 	auto p = mAllObjects[id];
-
+	
 	switch (p.first) {
 		case ObjectType::SHELF:
 			mShelves[p.second] = nullptr;
@@ -91,9 +104,10 @@ std::shared_ptr<Object> ObjectContainer::getObject(uint32_t id)
 {
 	auto p = mAllObjects[id];
 
+
+
 	switch (p.first) {
 	case ObjectType::SHELF:
-		mShelves[p.second] = nullptr;
 		return std::static_pointer_cast<Object>(mShelves[p.second]);
 		break;
 	case ObjectType::DELIVERY:
