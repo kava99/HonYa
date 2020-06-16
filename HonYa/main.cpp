@@ -3,18 +3,21 @@
 #include "GraphicsEngine.h"
 #include "DebugGui.h"
 
-#include "Object.h"
-#include "Shelf.h"
+
+#include "ObjectContainer.h"
 
 std::unique_ptr<GraphicsEngine> gGraphicsEngine;
-std::unique_ptr<Object> gObject;
+std::unique_ptr<ObjectContainer> gObjectCon;
 
 void onInitialization() {
 	gGraphicsEngine = std::make_unique<GraphicsEngine>();
 	gGraphicsEngine->createWindow({800, 600});
 
 
-	gObject = std::make_unique<Shelf>();
+	gObjectCon = std::make_unique<ObjectContainer>();
+	gObjectCon->createShelf();
+	gObjectCon->createShelf();
+	gObjectCon->createDelivery();
 }
 
 void update(float ticks) {
@@ -27,9 +30,9 @@ void render() {
 		debug_gui::renderBasic();
 
 
-		ImGui::Begin("Object");
+		ImGui::Begin("Object Container");
 
-		gObject->renderGuiDebug();
+		gObjectCon->renderGuiDebug();
 
 		ImGui::End();
 
