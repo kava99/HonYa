@@ -17,6 +17,9 @@
     <Filter Include="src\Interfaces">
       <UniqueIdentifier>{4cba57b7-75a0-4e7c-8cc1-b16b5d520308}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Items">
+      <UniqueIdentifier>{b6eb38cc-9f2f-4096-8ab8-5ccc0957ef9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui.cpp">
@@ -53,6 +56,12 @@
       <Filter>src\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Magazine.cpp" />
+    <ClCompile Include="Item.cpp">
+      <Filter>src\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
+      <Filter>src\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -104,5 +113,11 @@
       <Filter>src\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Magazine.h" />
+    <ClInclude Include="Item.h">
+      <Filter>src\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>src\Items</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

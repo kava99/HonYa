@@ -12,7 +12,7 @@ std::unique_ptr<Magazine> gMagazine;
 
 void onInitialization() {
 	gGraphicsEngine = std::make_unique<GraphicsEngine>();
-	gGraphicsEngine->createWindow({800, 600});
+	gGraphicsEngine->createWindow({1366, 768});
 
 
 	gMagazine = std::make_unique<Magazine>();

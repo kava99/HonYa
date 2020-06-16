@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="Delivery.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="external\imgui\imgui_impl_allegro5.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -168,6 +170,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Book.h" />
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="DebugGui.h" />
     <ClInclude Include="Delivery.h" />
@@ -180,6 +183,7 @@
     <ClInclude Include="external\imgui\imstb_truetype.h" />
     <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="IGuiDebug.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Magazine.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectContainer.h" />
