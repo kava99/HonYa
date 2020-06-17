@@ -4,6 +4,7 @@
 #include "ObjectContainer.h"
 #include "IGuiDebug.h"
 #include "Item.h"
+#include "Book.h"
 #include "GraphicsEngine.h"
 
 class Magazine : public IGuiDebug

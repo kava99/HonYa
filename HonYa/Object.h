@@ -2,6 +2,7 @@
 
 #include "Common.hpp"
 #include "IGuiDebug.h"
+#include "Item.h"
 
 enum class ObjectType : int {
 	NONE,
@@ -37,13 +38,14 @@ public:
 
 
 
-	/*std::vector<std::shared_ptr<Item>> mItems;
 
-	int putItem(std::shared_ptr<Item> item); // It will return pos in mItems array; if cannot put item it will retunr -1
-	std::shared_ptr<Item> withdrawItem(int id);
-	int withdrawItem(std::shared_ptr<Item> item);*/
+
+	uint32_t putItem(std::unique_ptr<Item> item); // It will return pos in mItems array; if cannot put item it will retunr -1
+	std::unique_ptr<Item> withdrawItem(uint32_t id);
 
 protected:
+	std::vector<std::unique_ptr<Item>> mItems;
+
 	void setDefaultValues();
 	void initItemList();
 };

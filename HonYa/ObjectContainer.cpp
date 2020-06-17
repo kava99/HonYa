@@ -102,8 +102,9 @@ bool ObjectContainer::removeObject(uint32_t id)
 
 std::shared_ptr<Object> ObjectContainer::getObject(uint32_t id)
 {
-	auto p = mAllObjects[id];
+	if (id >= mAllObjects.size()) return nullptr;
 
+	auto p = mAllObjects[id];
 
 
 	switch (p.first) {

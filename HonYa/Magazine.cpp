@@ -7,6 +7,7 @@ Magazine::Magazine()
 	mObjectMap.resize(mMapWidthTiles * mMapHeightTiles);
 	std::fill(mObjectMap.begin(), mObjectMap.end(), -1);
 	mObjectContainer = std::make_unique<ObjectContainer>();
+	mItemBelongings = std::map<uint32_t, uint32_t>();
 
 
 	bfree = al_load_bitmap("free.png");
@@ -21,6 +22,14 @@ Magazine::~Magazine()
 void Magazine::renderGuiDebug()
 {
 	mObjectContainer->renderGuiDebug();
+	if (ImGui::TreeNode("Item Belongings")) {
+
+		for (auto& it : mItemBelongings) {
+			ImGui::Text("Item: '%i' belongs to '%i' object", it.first, it.second);
+		}
+
+		ImGui::TreePop();
+	}
 }
 
 void Magazine::drawMap()
@@ -81,4 +90,46 @@ void Magazine::buildObject(ObjectType ot, vec2 posInTiles)
 	std::string name = obj->mInGameName;
 	name.append(std::to_string(obj->mUniqueId));
 	obj->mInGameName = name;
+}
+
+void Magazine::createItem(ItemType it, uint32_t objectId)
+{
+	std::unique_ptr<Item> item;
+	uint32_t itemId;
+	switch (it) {
+		case ItemType::BOOK:
+			item = std::make_unique<Book>();
+			break;
+	}
+
+	itemId = item->mUniqueId;
+
+	auto obj = mObjectContainer->getObject(objectId);
+	if (obj == nullptr) {
+		std::cout << "Cannot put into: " << objectId << " object. Object doesn't exist!\n";
+		return;
+	}
+
+	if (obj->putItem(std::move(item)) == -1) {
+		std::cout << "Cannot put into: " << objectId << " object. Object has no space!\n";
+		return;
+	}
+
+	mItemBelongings[itemId] = objectId;
+
+}
+
+std::unique_ptr<Item> Magazine::withdrawItemFromObject(uint32_t idOfItem, uint32_t objectId)
+{
+	auto obj = mObjectContainer->getObject(objectId);
+	if (obj == nullptr) return nullptr;
+	auto item = obj->withdrawItem(idOfItem);
+	if(item != nullptr)
+		mItemBelongings.erase(idOfItem);
+
+	return std::move(item);
+}
+
+void Magazine::putItemIntoObject(std::unique_ptr<Item> item, uint32_t obejctId)
+{
 }

@@ -19,6 +19,16 @@ void onInitialization() {
 	gMagazine->buildObject(ObjectType::SHELF, vec2(3, 3));
 	gMagazine->buildObject(ObjectType::SHELF, vec2(3, 5));
 	gMagazine->buildObject(ObjectType::DELIVERY, vec2(9, 9));
+	gMagazine->createItem(ItemType::BOOK, 0);
+	gMagazine->createItem(ItemType::BOOK, 0);
+	gMagazine->createItem(ItemType::BOOK, 0);
+	gMagazine->createItem(ItemType::BOOK, 0);
+	gMagazine->createItem(ItemType::BOOK, 0);
+	gMagazine->createItem(ItemType::BOOK, 1);
+	gMagazine->createItem(ItemType::BOOK, 2);
+
+	gMagazine->withdrawItemFromObject(2, 0);
+
 }
 
 void update(float ticks) {

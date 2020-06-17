@@ -9,7 +9,7 @@ Shelf::Shelf()
 	mSpaceTaken = 0;
 
 
-	//initItemList();
+	initItemList();
 
 }
 

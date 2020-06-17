@@ -20,14 +20,13 @@ void Object::renderGuiDebug()
 	if (mCapacity != -1) {
 		if (ImGui::TreeNode(format("Capacity: %i", mCapacity).c_str())) {
 
-			/*auto items = obj->mItems;
 
-			for (int i = 0; i < items.size(); ++i) {
-				if (items[i] == nullptr)
+			for (int i = 0; i < mItems.size(); ++i) {
+				if (mItems[i] == nullptr)
 					ImGui::Text("%i: nullptr", i);
 				else
-					ImGui::Text("%i: %s", i, items[i]->mInGameName.c_str());
-			}*/
+					ImGui::Text("%i: %s", i, mItems[i]->mInGameName.c_str());
+			}
 
 
 			ImGui::TreePop();
@@ -38,6 +37,7 @@ void Object::renderGuiDebug()
 
 }
 
+
 void Object::setDefaultValues()
 {
 	mObjectType = ObjectType::NONE;
@@ -47,11 +47,11 @@ void Object::setDefaultValues()
 	mPosition = { 0, 0, 0, 0 };
 	mCapacity = -1;
 	mSpaceTaken = -1;
-	//mItems.clear();
+	mItems.clear();
 }
 
 
-/*
+
 
 void Object::initItemList()
 {
@@ -61,25 +61,38 @@ mItems.resize(mCapacity);
 
 
 
-int Object::putItem(std::shared_ptr<Item> item)
+uint32_t Object::putItem(std::unique_ptr<Item> item)
 {
 	if (mSpaceTaken == -1 || mCapacity <= 0) return -1;
 	if (mSpaceTaken >= mCapacity) return -1;
 	if (item == nullptr) return -1;
-	//if(item->mItemType == ItemType::BLANK) return -1; // TODO: uncomment this
+	if(item->mItemType == ItemType::BLANK) return -1;
 
-	mItems[mSpaceTaken] = item;
+	mItems[mSpaceTaken] = std::move(item);
 	mSpaceTaken++;
 
-	item->mIdOfObject = mUniqueId;
 
 	return mSpaceTaken - 1;
 }
 
-std::shared_ptr<Item> Object::withdrawItem(int id)
+std::unique_ptr<Item> Object::withdrawItem(uint32_t id)
 {
+	if (mSpaceTaken == -1 || mCapacity <= 0) return nullptr;
+	
+	for (int i = 0; i < mSpaceTaken; ++i) {
+		if (mItems[i] == nullptr) continue;
+		if (mItems[i]->mUniqueId == id) {
+			std::unique_ptr<Item> foundItem = std::move(mItems[i]);
+
+			for (int j = i; j < mSpaceTaken - 1; ++j) {
+				mItems[j] = std::move(mItems[j + 1]);
+			}
+			mSpaceTaken--;
+			return std::move(foundItem);
+		}
+	}
+
+	return nullptr;
 }
 
-int Object::withdrawItem(std::shared_ptr<Item> item)
-{
-}*/
+
