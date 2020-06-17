@@ -20,6 +20,9 @@
     <Filter Include="src\Items">
       <UniqueIdentifier>{b6eb38cc-9f2f-4096-8ab8-5ccc0957ef9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Workers">
+      <UniqueIdentifier>{e78c7ba9-acb3-4379-84f9-f54186d7d894}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui.cpp">
@@ -61,6 +64,12 @@
     </ClCompile>
     <ClCompile Include="Book.cpp">
       <Filter>src\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Worker.cpp">
+      <Filter>src\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkersUnion.cpp">
+      <Filter>src\Workers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +127,15 @@
     </ClInclude>
     <ClInclude Include="Book.h">
       <Filter>src\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Worker.h">
+      <Filter>src\Workers</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkersUnion.h">
+      <Filter>src\Workers</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawable.h">
+      <Filter>src\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

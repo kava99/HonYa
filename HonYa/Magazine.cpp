@@ -32,7 +32,7 @@ void Magazine::renderGuiDebug()
 	}
 }
 
-void Magazine::drawMap()
+void Magazine::draw()
 {
 	std::vector<int> map  = mObjectMap;
 	int width = mMapWidthTiles;
@@ -95,27 +95,13 @@ void Magazine::buildObject(ObjectType ot, vec2 posInTiles)
 void Magazine::createItem(ItemType it, uint32_t objectId)
 {
 	std::unique_ptr<Item> item;
-	uint32_t itemId;
 	switch (it) {
 		case ItemType::BOOK:
 			item = std::make_unique<Book>();
 			break;
 	}
 
-	itemId = item->mUniqueId;
-
-	auto obj = mObjectContainer->getObject(objectId);
-	if (obj == nullptr) {
-		std::cout << "Cannot put into: " << objectId << " object. Object doesn't exist!\n";
-		return;
-	}
-
-	if (obj->putItem(std::move(item)) == -1) {
-		std::cout << "Cannot put into: " << objectId << " object. Object has no space!\n";
-		return;
-	}
-
-	mItemBelongings[itemId] = objectId;
+	putItemIntoObject(std::move(item), objectId);
 
 }
 
@@ -130,6 +116,20 @@ std::unique_ptr<Item> Magazine::withdrawItemFromObject(uint32_t idOfItem, uint32
 	return std::move(item);
 }
 
-void Magazine::putItemIntoObject(std::unique_ptr<Item> item, uint32_t obejctId)
+void Magazine::putItemIntoObject(std::unique_ptr<Item> item, uint32_t objectId)
 {
+	uint32_t itemId = item->mUniqueId;
+
+	auto obj = mObjectContainer->getObject(objectId);
+	if (obj == nullptr) {
+		std::cout << "Cannot put into: " << objectId << " object. Object doesn't exist!\n";
+		return;
+	}
+
+	if (obj->putItem(std::move(item)) == -1) {
+		std::cout << "Cannot put into: " << objectId << " object. Object has no space!\n";
+		return;
+	}
+
+	mItemBelongings[itemId] = objectId;
 }

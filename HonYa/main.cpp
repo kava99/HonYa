@@ -3,12 +3,14 @@
 #include "GraphicsEngine.h"
 #include "DebugGui.h"
 #include "Magazine.h"
+#include "WorkersUnion.h"
 
 
 #include "ObjectContainer.h"
 
 std::unique_ptr<GraphicsEngine> gGraphicsEngine;
 std::unique_ptr<Magazine> gMagazine;
+std::unique_ptr<WorkersUnion> gWorkersUnion;
 
 void onInitialization() {
 	gGraphicsEngine = std::make_unique<GraphicsEngine>();
@@ -29,6 +31,11 @@ void onInitialization() {
 
 	gMagazine->withdrawItemFromObject(2, 0);
 
+
+	gWorkersUnion = std::make_unique<WorkersUnion>();
+	gWorkersUnion->createNewWorker();
+	gWorkersUnion->createNewWorker();
+
 }
 
 void update(float ticks) {
@@ -38,16 +45,17 @@ void update(float ticks) {
 void render() {
 	if (gGraphicsEngine->beginFrame()) {
 
-		gMagazine->drawMap();
-
+		gMagazine->draw();
+		gWorkersUnion->draw();
 
 
 		debug_gui::renderBasic();
 
 		ImGui::Begin("Object Container");
-
 		gMagazine->renderGuiDebug();
-
+		ImGui::End();
+		ImGui::Begin("Workers");
+		gWorkersUnion->renderGuiDebug();
 		ImGui::End();
 
 		gGraphicsEngine->endFrame();
