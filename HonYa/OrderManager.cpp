@@ -20,7 +20,7 @@ void OrderManager::renderGuiDebug()
 void OrderManager::update(float ticks)
 {
 	if (mPendingOrders.size() < 6) {
-		mPendingOrders.push_back(1);
+		mPendingOrders.push_back((rand() % (2)) + 1);
 	}
 
 
