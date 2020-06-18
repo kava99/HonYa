@@ -23,6 +23,9 @@
     <Filter Include="src\Workers">
       <UniqueIdentifier>{e78c7ba9-acb3-4379-84f9-f54186d7d894}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Orders">
+      <UniqueIdentifier>{d7f77b29-f867-44dd-acaf-7df72a636b3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui.cpp">
@@ -70,6 +73,12 @@
     </ClCompile>
     <ClCompile Include="WorkersUnion.cpp">
       <Filter>src\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="Order.cpp">
+      <Filter>src\Orders</Filter>
+    </ClCompile>
+    <ClCompile Include="OrderManager.cpp">
+      <Filter>src\Orders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +144,15 @@
       <Filter>src\Workers</Filter>
     </ClInclude>
     <ClInclude Include="IDrawable.h">
+      <Filter>src\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Order.h">
+      <Filter>src\Orders</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderManager.h">
+      <Filter>src\Orders</Filter>
+    </ClInclude>
+    <ClInclude Include="IUpdateble.h">
       <Filter>src\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>

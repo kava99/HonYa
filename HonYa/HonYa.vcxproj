@@ -164,6 +164,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectContainer.cpp" />
+    <ClCompile Include="Order.cpp" />
+    <ClCompile Include="OrderManager.cpp" />
     <ClCompile Include="Shelf.cpp" />
     <ClCompile Include="Worker.cpp" />
     <ClCompile Include="WorkersUnion.cpp" />
@@ -187,9 +189,12 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IGuiDebug.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="IUpdateble.h" />
     <ClInclude Include="Magazine.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectContainer.h" />
+    <ClInclude Include="Order.h" />
+    <ClInclude Include="OrderManager.h" />
     <ClInclude Include="Shelf.h" />
     <ClInclude Include="Worker.h" />
     <ClInclude Include="WorkersUnion.h" />

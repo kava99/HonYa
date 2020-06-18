@@ -30,6 +30,14 @@ void Magazine::renderGuiDebug()
 
 		ImGui::TreePop();
 	}
+	if (ImGui::TreeNode("Books ready to sell")) {
+
+		for (auto& it : mBooksReadyToSell) {
+			ImGui::Text("Book: '%i'", it);
+		}
+
+		ImGui::TreePop();
+	}
 }
 
 void Magazine::draw()
@@ -110,8 +118,12 @@ std::unique_ptr<Item> Magazine::withdrawItemFromObject(uint32_t idOfItem, uint32
 	auto obj = mObjectContainer->getObject(objectId);
 	if (obj == nullptr) return nullptr;
 	auto item = obj->withdrawItem(idOfItem);
-	if(item != nullptr)
+	if (item != nullptr) {
 		mItemBelongings.erase(idOfItem);
+		if (item->mItemType == ItemType::BOOK && obj->mObjectType == ObjectType::SHELF)
+			mBooksReadyToSell.erase(std::remove(mBooksReadyToSell.begin(), mBooksReadyToSell.end(), idOfItem), mBooksReadyToSell.end());
+	}
+		
 
 	return std::move(item);
 }
@@ -119,6 +131,7 @@ std::unique_ptr<Item> Magazine::withdrawItemFromObject(uint32_t idOfItem, uint32
 void Magazine::putItemIntoObject(std::unique_ptr<Item> item, uint32_t objectId)
 {
 	uint32_t itemId = item->mUniqueId;
+	auto itemType = item->mItemType;
 
 	auto obj = mObjectContainer->getObject(objectId);
 	if (obj == nullptr) {
@@ -132,4 +145,6 @@ void Magazine::putItemIntoObject(std::unique_ptr<Item> item, uint32_t objectId)
 	}
 
 	mItemBelongings[itemId] = objectId;
+	if(itemType == ItemType::BOOK && obj->mObjectType == ObjectType::SHELF)
+		mBooksReadyToSell.push_back(itemId);
 }

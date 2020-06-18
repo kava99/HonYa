@@ -24,13 +24,17 @@ public:
 	std::unique_ptr<Item> withdrawItemFromObject(uint32_t idOfItem, uint32_t objectId);
 	void putItemIntoObject(std::unique_ptr<Item> item, uint32_t objectId);
 
+	//uint32_t getNumOfBooksReadyToSell() { return mBooksReadyToSell.size(); }
+	std::vector<uint32_t> mBooksReadyToSell;
+
 private:
 	int mMapWidthTiles;
 	int mMapHeightTiles;
 
 	std::vector<int> mObjectMap;
 	std::unique_ptr<ObjectContainer> mObjectContainer;
-	std::map<uint32_t, uint32_t> mItemBelongings; // first is id of book and secund id of object it belongs to
+	std::map<uint32_t, uint32_t> mItemBelongings; // first is id of item and secund id of object it belongs to
+
 
 	ALLEGRO_BITMAP* bfree;
 	ALLEGRO_BITMAP* btaken;

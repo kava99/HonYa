@@ -4,6 +4,7 @@
 #include "DebugGui.h"
 #include "Magazine.h"
 #include "WorkersUnion.h"
+#include "OrderManager.h"
 
 
 #include "ObjectContainer.h"
@@ -11,6 +12,7 @@
 std::unique_ptr<GraphicsEngine> gGraphicsEngine;
 std::unique_ptr<Magazine> gMagazine;
 std::unique_ptr<WorkersUnion> gWorkersUnion;
+std::unique_ptr<OrderManager> gOrderManager;
 
 void onInitialization() {
 	gGraphicsEngine = std::make_unique<GraphicsEngine>();
@@ -36,10 +38,12 @@ void onInitialization() {
 	gWorkersUnion->createNewWorker();
 	gWorkersUnion->createNewWorker();
 
+	gOrderManager = std::make_unique<OrderManager>();
 }
 
 void update(float ticks) {
-
+	gOrderManager->update(ticks);
+	gMagazine->mBooksReadyToSell = gOrderManager->acceptPendingOrder(gMagazine->mBooksReadyToSell);
 }
 
 void render() {
@@ -56,6 +60,9 @@ void render() {
 		ImGui::End();
 		ImGui::Begin("Workers");
 		gWorkersUnion->renderGuiDebug();
+		ImGui::End();
+		ImGui::Begin("Order");
+		gOrderManager->renderGuiDebug();
 		ImGui::End();
 
 		gGraphicsEngine->endFrame();
