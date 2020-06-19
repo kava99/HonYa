@@ -169,6 +169,7 @@
     <ClCompile Include="OrderManager.cpp" />
     <ClCompile Include="Shelf.cpp" />
     <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Worker.cpp" />
     <ClCompile Include="WorkersUnion.cpp" />
   </ItemGroup>
@@ -200,6 +201,7 @@
     <ClInclude Include="OrderManager.h" />
     <ClInclude Include="Shelf.h" />
     <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Worker.h" />
     <ClInclude Include="WorkersUnion.h" />
   </ItemGroup>

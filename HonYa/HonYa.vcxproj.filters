@@ -64,7 +64,6 @@
     <ClCompile Include="Delivery.cpp">
       <Filter>src\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="Item.cpp">
       <Filter>src\Items</Filter>
     </ClCompile>
@@ -89,6 +88,10 @@
     <ClCompile Include="TaskManager.cpp">
       <Filter>src\Tasks</Filter>
     </ClCompile>
+    <ClCompile Include="Magazine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -139,7 +142,6 @@
     <ClInclude Include="Delivery.h">
       <Filter>src\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Magazine.h" />
     <ClInclude Include="Item.h">
       <Filter>src\Items</Filter>
     </ClInclude>
@@ -170,5 +172,9 @@
     <ClInclude Include="TaskManager.h">
       <Filter>src\Tasks</Filter>
     </ClInclude>
+    <ClInclude Include="Magazine.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@
 #include "WorkersUnion.h"
 #include "OrderManager.h"
 #include "TaskManager.h"
-
+#include "Timer.h"
 
 #include "ObjectContainer.h"
 
@@ -26,12 +26,7 @@ void onInitialization() {
 	gMagazine->buildObject(ObjectType::SHELF, vec2(18, 1));
 	gMagazine->buildObject(ObjectType::SHELF, vec2(20, 22));
 	gMagazine->buildObject(ObjectType::DELIVERY, vec2(9, 9));
-	for (int i = 0; i < 20; ++i) {
-		gMagazine->createItem(ItemType::BOOK, 0);
-		gMagazine->createItem(ItemType::BOOK, 1);
-		gMagazine->createItem(ItemType::BOOK, 2);
-		gMagazine->createItem(ItemType::BOOK, 3);
-	}
+
 	gMagazine->createItem(ItemType::BOOK, 0);
 	gMagazine->createItem(ItemType::BOOK, 1);
 	gMagazine->createItem(ItemType::BOOK, 0);
@@ -44,6 +39,10 @@ void onInitialization() {
 
 
 	gWorkersUnion = std::make_shared<WorkersUnion>();
+	gWorkersUnion->createNewWorker();
+	gWorkersUnion->createNewWorker();
+	gWorkersUnion->createNewWorker();
+	gWorkersUnion->createNewWorker();
 	gWorkersUnion->createNewWorker();
 	gWorkersUnion->createNewWorker();
 
@@ -60,6 +59,15 @@ void update(float ticks) {
 	gOrderManager->update(ticks);
 	gMagazine->mBooksReadyToSell = gOrderManager->acceptPendingOrder(gMagazine->mBooksReadyToSell);
 	TaskManager::Instance()->update(ticks);
+
+	static Timer timer;
+	timer.update(ticks);
+	if (timer.timePassed() >= 1.0f) {
+		timer.reset();
+		for (int i = 0; i < 4; ++i) {
+			gMagazine->createItem(ItemType::BOOK, i);
+		}
+	}
 }
 
 void render() {

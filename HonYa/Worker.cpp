@@ -31,9 +31,9 @@ void Worker::update(float ticks)
 	if (mDestination.y > mPosition.y)
 		mPosition.y += (mSpeed * ticks);
 
-	if (mDestination.x - mPosition.x >= -2.0f && mDestination.x - mPosition.x <= 2.0f)
+	if (mDestination.x - mPosition.x >= -4.0f && mDestination.x - mPosition.x <= 4.0f)
 		mPosition.x = mDestination.x;
-	if (mDestination.y - mPosition.y >= -2.0f && mDestination.y - mPosition.y <= 2.0f)
+	if (mDestination.y - mPosition.y >= -4.0f && mDestination.y - mPosition.y <= 4.0f)
 		mPosition.y = mDestination.y;
 
 
