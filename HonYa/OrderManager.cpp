@@ -19,8 +19,16 @@ void OrderManager::renderGuiDebug()
 
 void OrderManager::update(float ticks)
 {
+	for (auto& ord : mOrders) {
+		if (ord->mIsCompleted) {
+			mOrders.erase(std::remove(mOrders.begin(), mOrders.end(), ord), mOrders.end());
+			break;
+		}
+	}
+
 	if (mPendingOrders.size() < 6) {
-		mPendingOrders.push_back((rand() % (2)) + 1);
+		//mPendingOrders.push_back((rand() % (2)) + 1);
+		mPendingOrders.push_back(1);
 	}
 
 
@@ -46,7 +54,7 @@ std::vector<uint32_t> OrderManager::acceptPendingOrder(std::vector<uint32_t> boo
 			
 		}
 
-
+		TaskManager::Instance()->pushOrderCompletionTask(ord);
 		mPendingOrders.pop_back();
 		mOrders.push_back(ord);
 

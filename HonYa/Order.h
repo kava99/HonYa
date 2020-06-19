@@ -20,6 +20,8 @@ public:
 	uint32_t mUniqueId;
 	std::vector<uint32_t> mBookIds;
 
+	bool mIsCompleted;
+
 
 };
 

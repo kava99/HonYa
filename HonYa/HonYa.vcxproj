@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
+    <ClCompile Include="CompleteOrderTask.cpp" />
     <ClCompile Include="Delivery.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
@@ -167,6 +168,7 @@
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="OrderManager.cpp" />
     <ClCompile Include="Shelf.cpp" />
+    <ClCompile Include="TaskManager.cpp" />
     <ClCompile Include="Worker.cpp" />
     <ClCompile Include="WorkersUnion.cpp" />
   </ItemGroup>
@@ -176,6 +178,7 @@
   <ItemGroup>
     <ClInclude Include="Book.h" />
     <ClInclude Include="Common.hpp" />
+    <ClInclude Include="CompleteOrderTask.h" />
     <ClInclude Include="DebugGui.h" />
     <ClInclude Include="Delivery.h" />
     <ClInclude Include="external\imgui\imconfig.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="Order.h" />
     <ClInclude Include="OrderManager.h" />
     <ClInclude Include="Shelf.h" />
+    <ClInclude Include="TaskManager.h" />
     <ClInclude Include="Worker.h" />
     <ClInclude Include="WorkersUnion.h" />
   </ItemGroup>

@@ -26,6 +26,9 @@
     <Filter Include="src\Orders">
       <UniqueIdentifier>{d7f77b29-f867-44dd-acaf-7df72a636b3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Tasks">
+      <UniqueIdentifier>{c1d07a0c-9888-48b3-9b97-16b31f9480f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui.cpp">
@@ -79,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="OrderManager.cpp">
       <Filter>src\Orders</Filter>
+    </ClCompile>
+    <ClCompile Include="CompleteOrderTask.cpp">
+      <Filter>src\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManager.cpp">
+      <Filter>src\Tasks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +163,12 @@
     </ClInclude>
     <ClInclude Include="IUpdateble.h">
       <Filter>src\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="CompleteOrderTask.h">
+      <Filter>src\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>src\Tasks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

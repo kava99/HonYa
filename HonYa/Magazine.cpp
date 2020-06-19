@@ -108,7 +108,6 @@ void Magazine::createItem(ItemType it, uint32_t objectId)
 			item = std::make_unique<Book>();
 			break;
 	}
-
 	putItemIntoObject(std::move(item), objectId);
 
 }
@@ -147,4 +146,10 @@ void Magazine::putItemIntoObject(std::unique_ptr<Item> item, uint32_t objectId)
 	mItemBelongings[itemId] = objectId;
 	if(itemType == ItemType::BOOK && obj->mObjectType == ObjectType::SHELF)
 		mBooksReadyToSell.push_back(itemId);
+}
+
+std::shared_ptr<Object> Magazine::getObjectByItem(uint32_t id)
+{
+	if (mItemBelongings.count(id) == 0) return nullptr;
+	return getObject(mItemBelongings[id]);
 }

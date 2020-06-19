@@ -5,10 +5,11 @@
 #include "Worker.h"
 #include "IGuiDebug.h"
 #include "IDrawable.h"
+#include "IUpdateble.h"
 
 
 
-class WorkersUnion : public IGuiDebug, public IDrawable
+class WorkersUnion : public IGuiDebug, public IDrawable, public IUpdateble
 {
 public:
 	WorkersUnion();
@@ -16,6 +17,7 @@ public:
 
 	void renderGuiDebug();
 	void draw();
+	void update(float ticks);
 
 	void createNewWorker();
 	std::shared_ptr<Worker> getIdleWorker();

@@ -44,6 +44,17 @@ void WorkersUnion::draw()
 
 }
 
+void WorkersUnion::update(float ticks)
+{
+	for (auto& worker : mIdleWorkers) {
+		worker->update(ticks);
+	}
+
+	for (auto& worker : mWorkingWorkers) {
+		worker->update(ticks);
+	}
+}
+
 void WorkersUnion::createNewWorker()
 {
 	std::shared_ptr<Worker> w = std::make_shared<Worker>();
@@ -55,7 +66,9 @@ std::shared_ptr<Worker> WorkersUnion::getIdleWorker()
 	std::shared_ptr<Worker> w;
 	if (mIdleWorkers.size() >= 0)
 		w = mIdleWorkers.back();
-
+	else
+		return nullptr;
+	
 	mIdleWorkers.pop_back();
 
 	mWorkingWorkers.push_back(w);
@@ -65,4 +78,8 @@ std::shared_ptr<Worker> WorkersUnion::getIdleWorker()
 
 void WorkersUnion::returnWorker(std::shared_ptr<Worker> worker)
 {
+	mWorkingWorkers.erase(std::remove(mWorkingWorkers.begin(), mWorkingWorkers.end(), worker), mWorkingWorkers.end());
+	worker->mTaskType = TaskType::IDLE;
+	mIdleWorkers.push_back(worker);
+
 }

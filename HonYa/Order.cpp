@@ -3,6 +3,7 @@
 Order::Order()
 {
 	mUniqueId = getNextOrderId();
+	mIsCompleted = false;
 }
 
 Order::~Order()

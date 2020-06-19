@@ -27,13 +27,17 @@ public:
 	//uint32_t getNumOfBooksReadyToSell() { return mBooksReadyToSell.size(); }
 	std::vector<uint32_t> mBooksReadyToSell;
 
+	std::map<uint32_t, uint32_t> mItemBelongings; // first is id of item and secund id of object it belongs to
+	std::shared_ptr<Object> getObject(uint32_t id) { return mObjectContainer->getObject(id); }
+	std::shared_ptr<Object> getObjectByItem(uint32_t id);
+
 private:
 	int mMapWidthTiles;
 	int mMapHeightTiles;
 
 	std::vector<int> mObjectMap;
 	std::unique_ptr<ObjectContainer> mObjectContainer;
-	std::map<uint32_t, uint32_t> mItemBelongings; // first is id of item and secund id of object it belongs to
+
 
 
 	ALLEGRO_BITMAP* bfree;

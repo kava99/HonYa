@@ -5,13 +5,14 @@
 #include "Magazine.h"
 #include "WorkersUnion.h"
 #include "OrderManager.h"
+#include "TaskManager.h"
 
 
 #include "ObjectContainer.h"
 
 std::unique_ptr<GraphicsEngine> gGraphicsEngine;
-std::unique_ptr<Magazine> gMagazine;
-std::unique_ptr<WorkersUnion> gWorkersUnion;
+std::shared_ptr<Magazine> gMagazine;
+std::shared_ptr<WorkersUnion> gWorkersUnion;
 std::unique_ptr<OrderManager> gOrderManager;
 
 void onInitialization() {
@@ -19,14 +20,22 @@ void onInitialization() {
 	gGraphicsEngine->createWindow({1366, 768});
 
 
-	gMagazine = std::make_unique<Magazine>();
+	gMagazine = std::make_shared<Magazine>();
 	gMagazine->buildObject(ObjectType::SHELF, vec2(3, 3));
 	gMagazine->buildObject(ObjectType::SHELF, vec2(3, 5));
+	gMagazine->buildObject(ObjectType::SHELF, vec2(18, 1));
+	gMagazine->buildObject(ObjectType::SHELF, vec2(20, 22));
 	gMagazine->buildObject(ObjectType::DELIVERY, vec2(9, 9));
+	for (int i = 0; i < 20; ++i) {
+		gMagazine->createItem(ItemType::BOOK, 0);
+		gMagazine->createItem(ItemType::BOOK, 1);
+		gMagazine->createItem(ItemType::BOOK, 2);
+		gMagazine->createItem(ItemType::BOOK, 3);
+	}
 	gMagazine->createItem(ItemType::BOOK, 0);
+	gMagazine->createItem(ItemType::BOOK, 1);
 	gMagazine->createItem(ItemType::BOOK, 0);
-	gMagazine->createItem(ItemType::BOOK, 0);
-	gMagazine->createItem(ItemType::BOOK, 0);
+	gMagazine->createItem(ItemType::BOOK, 1);
 	gMagazine->createItem(ItemType::BOOK, 0);
 	gMagazine->createItem(ItemType::BOOK, 1);
 	gMagazine->createItem(ItemType::BOOK, 2);
@@ -34,16 +43,23 @@ void onInitialization() {
 	gMagazine->withdrawItemFromObject(2, 0);
 
 
-	gWorkersUnion = std::make_unique<WorkersUnion>();
+	gWorkersUnion = std::make_shared<WorkersUnion>();
 	gWorkersUnion->createNewWorker();
 	gWorkersUnion->createNewWorker();
 
 	gOrderManager = std::make_unique<OrderManager>();
-}
 
+	TaskManager::Instance()->mMagazine = gMagazine;
+	TaskManager::Instance()->mWorkersUnion = gWorkersUnion;
+
+}
+float x = 0;
 void update(float ticks) {
+
+	gWorkersUnion->update(ticks);
 	gOrderManager->update(ticks);
 	gMagazine->mBooksReadyToSell = gOrderManager->acceptPendingOrder(gMagazine->mBooksReadyToSell);
+	TaskManager::Instance()->update(ticks);
 }
 
 void render() {
@@ -78,11 +94,11 @@ int main(int argc, char **argv){
 	float secsPerFrame = 1.0f / fps;
 
 
-	std::chrono::duration<float> diff;
+	std::chrono::duration<float> diff = std::chrono::duration<float>::zero();
 	while(true){
 		
 		auto start = std::chrono::high_resolution_clock::now();
-		update(diff.count());
+		update(static_cast<float>(diff.count()));
 		render();
 		auto end = std::chrono::high_resolution_clock::now();
 		diff = end-start;

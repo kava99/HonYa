@@ -3,6 +3,8 @@
 
 #include "Common.hpp"
 #include "GraphicsEngine.h"
+#include "IDrawable.h"
+#include "IUpdateble.h"
 
 enum class TaskType : int {
 	IDLE,
@@ -20,16 +22,20 @@ static std::string taskString[] = {
 };
 
 
-class Worker
+class Worker : public IDrawable, public IUpdateble
 {
 public:
 	Worker();
 	~Worker();
 
 	void draw();
+	void update(float ticks);
 
 	vec2 mPosition;
+	vec2 mDestination;
 	TaskType mTaskType;
+
+	float mSpeed;
 
 	ALLEGRO_BITMAP* bball;
 
