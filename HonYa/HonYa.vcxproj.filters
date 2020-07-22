@@ -11,24 +11,6 @@
     <Filter Include="src">
       <UniqueIdentifier>{4de1a1e2-484f-4e23-930f-aea3197738bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Objects">
-      <UniqueIdentifier>{56d72cf7-0639-4517-9bee-cbd47df9d6cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Interfaces">
-      <UniqueIdentifier>{4cba57b7-75a0-4e7c-8cc1-b16b5d520308}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Items">
-      <UniqueIdentifier>{b6eb38cc-9f2f-4096-8ab8-5ccc0957ef9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Workers">
-      <UniqueIdentifier>{e78c7ba9-acb3-4379-84f9-f54186d7d894}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Orders">
-      <UniqueIdentifier>{d7f77b29-f867-44dd-acaf-7df72a636b3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Tasks">
-      <UniqueIdentifier>{c1d07a0c-9888-48b3-9b97-16b31f9480f2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="external\imgui\imgui.cpp">
@@ -49,49 +31,6 @@
     <ClCompile Include="main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Shelf.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsEngine.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectContainer.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Delivery.cpp">
-      <Filter>src\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>src\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Book.cpp">
-      <Filter>src\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="Worker.cpp">
-      <Filter>src\Workers</Filter>
-    </ClCompile>
-    <ClCompile Include="WorkersUnion.cpp">
-      <Filter>src\Workers</Filter>
-    </ClCompile>
-    <ClCompile Include="Order.cpp">
-      <Filter>src\Orders</Filter>
-    </ClCompile>
-    <ClCompile Include="OrderManager.cpp">
-      <Filter>src\Orders</Filter>
-    </ClCompile>
-    <ClCompile Include="CompleteOrderTask.cpp">
-      <Filter>src\Tasks</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskManager.cpp">
-      <Filter>src\Tasks</Filter>
-    </ClCompile>
-    <ClCompile Include="Magazine.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -118,63 +57,5 @@
     <ClInclude Include="external\imgui\imstb_truetype.h">
       <Filter>External</Filter>
     </ClInclude>
-    <ClInclude Include="Common.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Shelf.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="IGuiDebug.h">
-      <Filter>src\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugGui.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsEngine.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectContainer.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Delivery.h">
-      <Filter>src\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>src\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Book.h">
-      <Filter>src\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Worker.h">
-      <Filter>src\Workers</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkersUnion.h">
-      <Filter>src\Workers</Filter>
-    </ClInclude>
-    <ClInclude Include="IDrawable.h">
-      <Filter>src\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="Order.h">
-      <Filter>src\Orders</Filter>
-    </ClInclude>
-    <ClInclude Include="OrderManager.h">
-      <Filter>src\Orders</Filter>
-    </ClInclude>
-    <ClInclude Include="IUpdateble.h">
-      <Filter>src\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="CompleteOrderTask.h">
-      <Filter>src\Tasks</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskManager.h">
-      <Filter>src\Tasks</Filter>
-    </ClInclude>
-    <ClInclude Include="Magazine.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h" />
   </ItemGroup>
 </Project>

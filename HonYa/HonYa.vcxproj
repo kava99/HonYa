@@ -112,11 +112,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -151,37 +151,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Book.cpp" />
-    <ClCompile Include="CompleteOrderTask.cpp" />
-    <ClCompile Include="Delivery.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
     <ClCompile Include="external\imgui\imgui_impl_allegro5.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="GraphicsEngine.cpp" />
-    <ClCompile Include="Item.cpp" />
-    <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="ObjectContainer.cpp" />
-    <ClCompile Include="Order.cpp" />
-    <ClCompile Include="OrderManager.cpp" />
-    <ClCompile Include="Shelf.cpp" />
-    <ClCompile Include="TaskManager.cpp" />
-    <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Worker.cpp" />
-    <ClCompile Include="WorkersUnion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Book.h" />
-    <ClInclude Include="Common.hpp" />
-    <ClInclude Include="CompleteOrderTask.h" />
-    <ClInclude Include="DebugGui.h" />
-    <ClInclude Include="Delivery.h" />
     <ClInclude Include="external\imgui\imconfig.h" />
     <ClInclude Include="external\imgui\imgui.h" />
     <ClInclude Include="external\imgui\imgui_impl_allegro5.h" />
@@ -189,21 +169,6 @@
     <ClInclude Include="external\imgui\imstb_rectpack.h" />
     <ClInclude Include="external\imgui\imstb_textedit.h" />
     <ClInclude Include="external\imgui\imstb_truetype.h" />
-    <ClInclude Include="GraphicsEngine.h" />
-    <ClInclude Include="IDrawable.h" />
-    <ClInclude Include="IGuiDebug.h" />
-    <ClInclude Include="Item.h" />
-    <ClInclude Include="IUpdateble.h" />
-    <ClInclude Include="Magazine.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="ObjectContainer.h" />
-    <ClInclude Include="Order.h" />
-    <ClInclude Include="OrderManager.h" />
-    <ClInclude Include="Shelf.h" />
-    <ClInclude Include="TaskManager.h" />
-    <ClInclude Include="Timer.h" />
-    <ClInclude Include="Worker.h" />
-    <ClInclude Include="WorkersUnion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
