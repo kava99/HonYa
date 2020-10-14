@@ -32,8 +32,6 @@
 #pragma comment(lib, "d3dx9.lib")
 
 
-#define TILE_SIZE 32
-
 typedef ImVec2 vec2;
 typedef ImVec4 vec4;
 

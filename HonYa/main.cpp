@@ -7,7 +7,7 @@ d3d_mesh test_mesh;
 d3d_buffer buffer;
 
 void on_init() {
-	allegro_wrapper_window_create({800, 600}, "HonYa");
+	allegro_wrapper_window_create({1366, 768}, "HonYa");
 	d3d_init(allegro_wrapper_get_d3d_device());
 
 	d3d_buffer_vertex_struct test_verts[] =
@@ -22,8 +22,27 @@ void on_init() {
 		{ 3.0f, -3.0f, 3.0f, D3DCOLOR_XRGB(0, 255, 255), },
 	};
 
-	test_mesh.data = test_verts;
+	test_mesh.v_data = test_verts;
 	test_mesh.num_of_verts = 8;
+
+	UINT32 indices[] =
+	{
+		0, 1, 2,    // side 1
+		2, 1, 3,
+		4, 0, 6,    // side 2
+		6, 0, 2,
+		7, 5, 6,    // side 3
+		6, 5, 4,
+		3, 1, 7,    // side 4
+		7, 1, 5,
+		4, 5, 0,    // side 5
+		0, 5, 1,
+		3, 7, 2,    // side 6
+		2, 7, 6,
+	};
+
+	test_mesh.i_data = indices;
+	test_mesh.num_of_indices = 36;
 
 	buffer = d3d_buffer_create(test_mesh);
 

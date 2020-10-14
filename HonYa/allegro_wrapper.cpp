@@ -53,6 +53,10 @@ void allegro_wrapper_window_create(vec2 dim, std::string title)
 	if (!al_is_system_installed()) return;
 
 	al_set_new_display_flags(ALLEGRO_DIRECT3D);
+	//al_set_render_state(ALLEGRO_DEPTH_TEST, 1);
+	//al_set_render_state(ALLEGRO_DEPTH_FUNCTION, ALLEGRO_RENDER_LESS_EQUAL);
+	//al_set_new_display_option(ALLEGRO_FLOAT_DEPTH, 1, ALLEGRO_SUGGEST);
+	al_set_new_display_option(ALLEGRO_DEPTH_SIZE, 16, ALLEGRO_SUGGEST);
 
 	display = al_create_display(dim.x, dim.y);
 	if (!display) {
@@ -124,6 +128,7 @@ bool allegro_wrapper_frame_begin()
 	ImGui_ImplAllegro5_NewFrame();
 	ImGui::NewFrame();
 	al_clear_to_color(al_map_rgb(12, 24, 66));
+	al_clear_depth_buffer(0.0f);
 
 	return true;
 }

@@ -12,6 +12,9 @@ void d3d_init(LPDIRECT3DDEVICE9 dev)
 
 	device = dev;
 
+	device->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
+	device->SetRenderState(D3DRS_ZFUNC, D3DCMP_GREATEREQUAL);
+	device->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 }
 
 void d3d_buffer_render(d3d_buffer buffer)
@@ -24,7 +27,7 @@ void d3d_buffer_render(d3d_buffer buffer)
 
 
 	D3DXMATRIX matRotateY;
-	static float index = 0.0f; index += 0.05f;
+	static float index = 0.0f; index += 0.005f;
 	D3DXMatrixRotationY(&matRotateY, index);
 
 	device->SetTransform(D3DTS_WORLD, &matRotateY);
@@ -42,7 +45,7 @@ void d3d_buffer_render(d3d_buffer buffer)
 
 	D3DXMatrixPerspectiveFovLH(&matProjection,
 		D3DXToRadian(45),    // the horizontal field of view
-		(FLOAT)800 / (FLOAT)600, // aspect ratio
+		(FLOAT)16 / (FLOAT)9, // aspect ratio
 		1.0f,    // the near view-plane
 		100.0f);    // the far view-plane
 
@@ -50,8 +53,9 @@ void d3d_buffer_render(d3d_buffer buffer)
 
 
 	device->SetStreamSource(0, buffer.vertex_buffer, 0, sizeof(d3d_buffer_vertex_struct));
+	device->SetIndices(buffer.index_buffer);
 
-	device->DrawPrimitive(D3DPT_TRIANGLELIST, 0, buffer.num_of_triangles);
+	device->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, buffer.num_of_verts, 0, buffer.num_of_triangles);
 }
 
 void d3d_buffer_destroy(d3d_buffer buffer)
@@ -64,7 +68,8 @@ d3d_buffer d3d_buffer_create(d3d_mesh mesh)
 {
 	d3d_buffer buffer;
 	memset(&buffer, 0, sizeof(buffer));
-	buffer.num_of_triangles = mesh.num_of_verts / 3;
+	buffer.num_of_triangles = mesh.num_of_indices / 3;
+	buffer.num_of_verts = mesh.num_of_verts;
 
 	device->CreateVertexBuffer(mesh.num_of_verts * sizeof(d3d_buffer_vertex_struct),
 		0,
@@ -75,8 +80,22 @@ d3d_buffer d3d_buffer_create(d3d_mesh mesh)
 
 	VOID* p_void;
 	buffer.vertex_buffer->Lock(0, 0, (void**)&p_void, 0);
-	memcpy(p_void, mesh.data, mesh.num_of_verts * sizeof(d3d_buffer_vertex_struct));
+	memcpy(p_void, mesh.v_data, mesh.num_of_verts * sizeof(d3d_buffer_vertex_struct));
 	buffer.vertex_buffer->Unlock();
+
+
+
+	device->CreateIndexBuffer(mesh.num_of_indices * sizeof(UINT32),
+		0,
+		D3DFMT_INDEX32,
+		D3DPOOL_MANAGED,
+		&buffer.index_buffer,
+		NULL);
+
+
+	buffer.index_buffer->Lock(0, 0, (void**)&p_void, 0);
+	memcpy(p_void, mesh.i_data, mesh.num_of_indices * sizeof(UINT32));
+	buffer.index_buffer->Unlock();
 
 	return buffer;
 }
