@@ -41,10 +41,12 @@ void on_init() {
 		2, 7, 6,
 	};
 
+	loader::mesh loaded_mesh = loader::load_obj_from_file_to_mesh("untitled.obj");
+
 	test_mesh.i_data = indices;
 	test_mesh.num_of_indices = 36;
 
-	buffer = d3d_buffer_create(test_mesh);
+	buffer = d3d_buffer_create(loaded_mesh);
 
 }
 
@@ -55,7 +57,19 @@ void on_exit() {
 }
 
 void on_update(float tick) {
-
+	
+	if (ImGui::GetIO().KeysDown[ALLEGRO_KEY_D])
+		camera_move_right(1.0f);	
+	if (ImGui::GetIO().KeysDown[ALLEGRO_KEY_A])
+		camera_move_right(-1.0f);
+	if (ImGui::GetIO().KeysDown[ALLEGRO_KEY_W])
+		camera_move_up(1.0f);	
+	if (ImGui::GetIO().KeysDown[ALLEGRO_KEY_S])
+		camera_move_up(-1.0f);
+	if (ImGui::GetIO().KeysDown[ALLEGRO_KEY_R])
+		camera_zoom(1.0f);	
+	if (ImGui::GetIO().KeysDown[ALLEGRO_KEY_F])
+		camera_zoom(-1.0f);
 }
 
 void on_render() {

@@ -40,6 +40,12 @@
     <ClCompile Include="d3d.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="loader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -76,6 +82,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="d3d.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="loader.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

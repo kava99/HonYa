@@ -32,14 +32,8 @@ void d3d_buffer_render(d3d_buffer buffer)
 
 	device->SetTransform(D3DTS_WORLD, &matRotateY);
 
-	D3DXMATRIX matView;
 
-	D3DXMatrixLookAtLH(&matView,
-		&D3DXVECTOR3(0.0f, 0.0f, 10.0f),    // the camera position
-		&D3DXVECTOR3(0.0f, 0.0f, 0.0f),    // the look-at position
-		&D3DXVECTOR3(0.0f, 1.0f, 0.0f));    // the up direction
-
-	device->SetTransform(D3DTS_VIEW, &matView);
+	device->SetTransform(D3DTS_VIEW, &camera_get_matrix());
 
 	D3DXMATRIX matProjection;
 
@@ -47,7 +41,7 @@ void d3d_buffer_render(d3d_buffer buffer)
 		D3DXToRadian(45),    // the horizontal field of view
 		(FLOAT)16 / (FLOAT)9, // aspect ratio
 		1.0f,    // the near view-plane
-		100.0f);    // the far view-plane
+		1000.0f);    // the far view-plane
 
 	device->SetTransform(D3DTS_PROJECTION, &matProjection);
 
@@ -98,4 +92,33 @@ d3d_buffer d3d_buffer_create(d3d_mesh mesh)
 	buffer.index_buffer->Unlock();
 
 	return buffer;
+}
+
+d3d_buffer d3d_buffer_create(loader::mesh mesh)
+{
+	if (mesh.faces.size() == 0) {
+		printf("Cannot create d3d_buffer form loaded mesh!\n");
+		return d3d_buffer();
+	}
+	d3d_mesh out_mesh;
+	memset(&out_mesh, 0, sizeof(d3d_mesh));
+	d3d_buffer_vertex_struct* verts = new d3d_buffer_vertex_struct[mesh.faces.size() * 3];
+	UINT32* indices = new UINT32[mesh.faces.size() * 3];
+	int count = 0;
+	for (auto& it : mesh.faces) {
+		verts[count] = { it.verts[0].x, it.verts[0].y, it.verts[0].z, D3DCOLOR_XRGB(0, 0, 255), };
+		verts[count + 1] = { it.verts[1].x, it.verts[1].y, it.verts[1].z, D3DCOLOR_XRGB(0, 255, 0), };
+		verts[count + 2] = { it.verts[2].x, it.verts[2].y, it.verts[2].z, D3DCOLOR_XRGB(255, 0, 0), };
+		indices[count] = count;
+		indices[count + 1] = count + 1;
+		indices[count + 2] = count + 2;
+		count += 3;
+	}
+
+	out_mesh.v_data = verts;
+	out_mesh.i_data = indices;
+	out_mesh.num_of_verts = mesh.faces.size() * 3;
+	out_mesh.num_of_indices = mesh.faces.size() * 3;
+
+	return d3d_buffer_create(out_mesh);
 }

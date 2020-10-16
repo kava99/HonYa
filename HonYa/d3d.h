@@ -1,6 +1,8 @@
 #pragma once
 
 #include "common.h"
+#include "loader.h"
+#include "camera.h"
 
 struct d3d_mesh;
 struct d3d_buffer_vertex_struct;
@@ -32,6 +34,7 @@ struct d3d_buffer {
 };
 
 extern d3d_buffer d3d_buffer_create(d3d_mesh mesh);
+extern d3d_buffer d3d_buffer_create(loader::mesh mesh);
 extern void d3d_buffer_render(d3d_buffer buffer);
 extern void d3d_buffer_destroy(d3d_buffer buffer);
 
